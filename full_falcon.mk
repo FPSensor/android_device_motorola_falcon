@@ -22,6 +22,9 @@ $(call inherit-product, device/motorola/falcon/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := falcon
+
+# Shipped with Android 4.3 (keeps the legacy, non-isolated linker config)
+PRODUCT_SHIPPING_API_LEVEL := 18
 PRODUCT_NAME := full_falcon
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := falcon
