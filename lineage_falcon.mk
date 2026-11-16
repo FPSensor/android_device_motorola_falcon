@@ -7,3 +7,6 @@ PRODUCT_RELEASE_NAME := MOTO G
 PRODUCT_NAME := lineage_falcon
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
+
+# LineageOS turns adb root off in userdebug; keep it for bring-up
+PRODUCT_NOT_DEBUGGABLE_IN_USERDEBUG := false
