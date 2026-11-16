@@ -42,7 +42,6 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 880803840 # GPE, regular edition: 1023410176
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5930598400 # 5930614784 - 16384
-BOARD_PRODUCTIMAGE_PARTITION_SIZE := 694288384 # the old cache partition
 # No cache image is built; the non-A/B OTA tools only need its size
 BOARD_CACHEIMAGE_PARTITION_SIZE := 694288384
 
@@ -52,7 +51,11 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # inherit from the proprietary version
 -include vendor/motorola/falcon/BoardConfigVendor.mk
 
-# Android 16 doesn't fit the 840 MB system partition uncompressed
+# Android 16 doesn't fit the 840 MB system partition uncompressed: keep
+# everything (vendor and product too) in a compressed system, and leave
+# the cache partition as /cache.
+TARGET_COPY_OUT_PRODUCT := system/product
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE :=
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := squashfs
 BOARD_SYSTEMIMAGE_SQUASHFS_COMPRESSOR := gzip
 TARGET_RECOVERY_FSTAB := device/motorola/falcon/rootdir/etc/fstab.qcom
