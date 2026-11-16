@@ -38,6 +38,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 # Inherit from msm8226-common
+# Fstab with a squashfs system (takes precedence over the common one)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+
 $(call inherit-product, device/motorola/msm8226-common/msm8226.mk)
 
 # Space
